@@ -24,11 +24,11 @@ import java.lang.Object;
 public class DriveBase extends Subsystem {
 
 	//Setup the base configuration by assigning talons
-	public static final int KLeftRearBaseTalon =  1;
-	public static final int KLeftFrontBaseTalon = 2 ;
+	public static final int KLeftFrontBaseTalon =  1;
+	public static final int KLeftBackBaseTalon = 2 ;
 	public static final int KLeftTopBaseTalon = 3;
-	public static final int KRightRearBaseTalon = 4 ;
-	public static final int KRightFrontBaseTalon = 5 ;
+	public static final int KRightFrontBaseTalon = 4 ;
+	public static final int KRightBackBaseTalon = 5 ;
 	public static final int KRightTopBaseTalon = 6;
 	
 	public static final int KLeftBaseMaster = 1; //KLeftMaster = Master Talon for left side
@@ -44,9 +44,9 @@ public class DriveBase extends Subsystem {
 	
 	private TalonSRX leftFrontBaseMotor,
 					 rightFrontBaseMotor,
-					 leftRearBaseMotor,
+					 leftBackBaseMotor,
 					 leftTopBaseMotor,
-					 rightRearBaseMotor,
+					 rightBackBaseMotor,
 					 rightTopBaseMotor;
 	private DoubleSolenoid shifterSolenoid; //There will probably be a shift solenoid
 	
@@ -58,9 +58,9 @@ public class DriveBase extends Subsystem {
 		leftFrontBaseMotor = new TalonSRX(KLeftFrontBaseTalon);
 		rightFrontBaseMotor = new TalonSRX(KRightFrontBaseTalon);
 		//slave motors 
-		leftRearBaseMotor = new TalonSRX(KLeftRearBaseTalon);
+		leftBackBaseMotor = new TalonSRX(KLeftBackBaseTalon);
 		leftTopBaseMotor = new TalonSRX(KLeftTopBaseTalon);
-		rightRearBaseMotor = new TalonSRX(KRightRearBaseTalon);
+		rightBackBaseMotor = new TalonSRX(KRightBackBaseTalon);
 		rightTopBaseMotor = new TalonSRX(KRightTopBaseTalon);
 		// Config the masters and enable
 		leftFrontBaseMotor.setInverted(true);
@@ -68,13 +68,13 @@ public class DriveBase extends Subsystem {
 		//		rightFrontBaseMotor.enableControl(); - Removed
 		//		leftFrontBaseMotor.enableControl();  - Removed
 		// Config the slaves
-		leftRearBaseMotor.set(
+		leftBackBaseMotor.set(
 				ControlMode.Follower,
 				leftFrontBaseMotor.getDeviceID());
 		leftTopBaseMotor.set(
 				ControlMode.Follower,
 				leftFrontBaseMotor.getDeviceID());
-		rightRearBaseMotor.set(
+		rightBackBaseMotor.set(
 				ControlMode.Follower,
 				rightFrontBaseMotor.getDeviceID());
 		rightTopBaseMotor.set(
@@ -112,16 +112,16 @@ public class DriveBase extends Subsystem {
 //		LiveWindow.addSensor("SubDriveBase", "Gyro", gyroAccel);
 //		LiveWindow.addActuator("SubDriveBase", "Left Front Motor", leftFrontBaseMotor);
 //		LiveWindow.addActuator("SubDriveBase", "Right Front Motor", rightFrontBaseMotor);
-//		LiveWindow.addActuator("SubDriveBase", "Left Rear Motor", leftRearBaseMotor);
-//		LiveWindow.addActuator("SubDriveBase", "Right Rear Motor", rightRearBaseMotor);
+//		LiveWindow.addActuator("SubDriveBase", "Left Back Motor", leftBackBaseMotor);
+//		LiveWindow.addActuator("SubDriveBase", "Right Back Motor", rightBackBaseMotor);
 		}
 
 	private void initSafeMotor() {
 		// This ain't workin' on da new versions, dood. Get it working.
 		//leftFrontBaseMotor.setSafetyEnabled(true);
 		//rightFrontBaseMotor.setSafetyEnabled(true);
-		//leftRearBaseMotor.setSafetyEnabled(true);
-		//rightRearBaseMotor.setSafetyEnabled(true);
+		//leftBackBaseMotor.setSafetyEnabled(true);
+		//rightBackBaseMotor.setSafetyEnabled(true);
 		//leftTopBaseMotor.setSafetyEnabled(true);
 		//rightTopBaseMotor.setSafetyEnabled(true);
 	}
